@@ -1,6 +1,7 @@
 *.DS_Store
 bin
-target
+classes
+test-classes
 .classpath
 .project
 .springBeans
