@@ -3,23 +3,21 @@ package km.junit.ch8;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import km.junit.ch8.SampleServlet;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import junit.framework.TestCase;
-
-public class TestSampleServletTest {
+@RunWith(MockitoJUnitRunner.class)
+public class SampleServletTest {
 	
 	private SampleServlet servlet;
 	@Mock private HttpServletRequest mockedRequest;
@@ -28,8 +26,7 @@ public class TestSampleServletTest {
 	@Before
 	public void setUp() {
 		servlet = new SampleServlet();
-		mockedRequest = mock(HttpServletRequest.class);
-		mockedSession = mock(HttpSession.class);
+		//MockitoAnnotations.initMocks(this);
 	}
 	
 	// 인증 성공
@@ -77,7 +74,7 @@ public class TestSampleServletTest {
 		 * no session 테스트에서는 session관련된 검증을 안함..
 		 * 주석 제거시 테스트 실패 (wanted, but not invoked)
 		 */
-		verify(mockedSession).getAttribute("authenticated");
+		//verify(mockedSession).getAttribute("authenticated");
 		
 		// easyMock은 verify(mock) 으로 끝나는데..
 	}
